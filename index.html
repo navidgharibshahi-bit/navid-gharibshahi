@@ -2032,5 +2032,29 @@
         });
       })();
     </script>
+<script>
+(function(){try{
+var k='sedaye_visitor_id',vid=localStorage.getItem(k);
+if(!vid){vid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('v-'+Date.now()+'-'+Math.random().toString(36).slice(2));try{localStorage.setItem(k,vid);}catch(e){}}
+var day=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tehran',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+if(localStorage.getItem('sedaye_ping_day')===day)return;
+var ua=navigator.userAgent||'';
+var mobile=/Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+var os='Other',osFull='Other',m;
+if((m=ua.match(/Android\s+([\d.]+)/))){os='Android';osFull='Android '+m[1];}
+else if(/iPhone|iPad|iPod/.test(ua)){var v=(ua.match(/OS\s+([\d_]+)/)||[])[1];os='iOS';osFull='iOS '+(v?v.replace(/_/g,'.'):'');}
+else if((m=ua.match(/Windows NT\s+([\d.]+)/))){os='Windows';osFull='Windows '+m[1];}
+else if((m=ua.match(/Mac OS X\s+([\d_]+)/))){os='macOS';osFull='macOS '+m[1].replace(/_/g,'.');}
+else if(/Linux/.test(ua)){os='Linux';osFull='Linux';}
+var br='Other',brFull='Other';
+if((m=ua.match(/SamsungBrowser\/([\d.]+)/))){br='Samsung';brFull='Samsung Internet '+m[1];}
+else if((m=ua.match(/Edg\/([\d.]+)/))){br='Edge';brFull='Edge '+m[1];}
+else if((m=ua.match(/Firefox\/([\d.]+)/))){br='Firefox';brFull='Firefox '+m[1];}
+else if((m=ua.match(/Chrome\/([\d.]+)/))){br='Chrome';brFull='Chrome '+m[1].split('.')[0];}
+else if((m=ua.match(/Version\/([\d.]+).*Safari/))){br='Safari';brFull='Safari '+m[1];}
+var data={vid:vid,device:mobile?'mobile':'desktop',os:os,osFull:osFull,browser:br,browserFull:brFull,screen:(window.screen?window.screen.width:'')+'×'+(window.screen?window.screen.height:''),lang:(navigator.language||'en').slice(0,2).toLowerCase(),tz:(Intl.DateTimeFormat().resolvedOptions().timeZone||'')};
+fetch('https://lbdrlykisncpgoiqzess.supabase.co/functions/v1/api/visit',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data),keepalive:true}).then(function(){try{localStorage.setItem('sedaye_ping_day',day);}catch(e){}}).catch(function(){});
+}catch(e){}})();
+</script>
   </body>
 </html>
