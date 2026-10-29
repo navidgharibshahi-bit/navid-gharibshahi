@@ -457,6 +457,16 @@
       .intl-about .more-btn { margin-top: 4px; }
       #cat-panel[dir="ltr"] .back-btn svg { transform: scaleX(-1); }
 
+      /* ---- international view: world nomad news (LTR, after the about card) ---- */
+      .intl-news { margin-top: 30px; text-align: left; }
+      .intl-news[hidden] { display: none; }
+      .intl-news .news-head { margin-top: 0; }
+      .news-country {
+        background: linear-gradient(150deg, #2bb3a3, #17667f); color: #fff;
+        font-size: .78rem; font-weight: 800; padding: 3px 11px; border-radius: 999px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.4); white-space: nowrap;
+      }
+
       /* ---- international view: Discover Iran video (LTR, end of the panel) ---- */
       .intl-video { margin-top: 30px; text-align: left; }
       .intl-video[hidden] { display: none; }
@@ -599,7 +609,7 @@
 
       /* blocks revealed inside a view (province news, shop, intl extras,
          status notes) enter with the same soft fade-rise as the views */
-      #province-news:not([hidden]), #cat-article:not([hidden]), #regs-article:not([hidden]), #cat-links:not([hidden]), .intl-about:not([hidden]), .intl-subs:not([hidden]),
+      #province-news:not([hidden]), #cat-article:not([hidden]), #regs-article:not([hidden]), #cat-links:not([hidden]), .intl-about:not([hidden]), .intl-news:not([hidden]), .intl-subs:not([hidden]),
       .intl-video:not([hidden]), .shop:not([hidden]), #intl-soon:not([hidden]),
       .form-status:not([hidden]) { animation: viewIn var(--dur-3) var(--ease) both; }
       .reveal.in { animation: rise .5s var(--ease) both; }
@@ -828,6 +838,70 @@
               Read more
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </button>
+          </div>
+
+          <!-- world nomad news: rendered only inside the international
+               category, after the English introduction and before the
+               Discover Iran video. Each whole card links out to the
+               original article on the source site; newest first. -->
+          <div class="intl-news" id="intl-news" hidden dir="ltr" lang="en">
+            <h3 class="news-head">Nomads Around the World — Latest News</h3>
+            <div class="news-list">
+              <a class="news-card glass" href="https://breakingafricanews.com/thousands-of-sheep-take-over-madrids-streets-for-transhumance-festival/" target="_blank" rel="noopener noreferrer">
+                <h4 class="news-title">Thousands of sheep take over Madrid's streets for Transhumance Festival</h4>
+                <p class="news-excerpt">A flock of 1,250 sheep and 160 goats crossed central Madrid on Sunday, 25 October, for the 33rd Transhumance Festival, celebrating the centuries-old practice of moving livestock between summer and winter pastures. This year's route was changed to avoid Puerta del Sol, and the festival also highlighted how traditional grazing helps reduce wildfire risk.</p>
+                <div class="news-meta">
+                  <span class="news-country">Spain</span>
+                  <span class="src">Africanews</span><i></i><span>26 October 2026</span>
+                  <span class="news-go">Read more at the source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg></span>
+                </div>
+              </a>
+              <a class="news-card glass" href="https://afripost.ng/2026/10/26/fulani-leaders-demand-30-agriculture-budget-to-end-herder-farmer-clashes/" target="_blank" rel="noopener noreferrer">
+                <h4 class="news-title">Fulani leaders demand 30% agriculture budget to end herder-farmer clashes</h4>
+                <p class="news-excerpt">Fulani pastoralist leaders have urged President Bola Tinubu and the National Assembly to allocate at least 30 per cent of Nigeria's agriculture budget to the Ministry of Livestock Development. The Confederation of Pastoralists also called for pilot ranches and fodder projects in all six geopolitical zones and protection for 417 grazing reserves.</p>
+                <div class="news-meta">
+                  <span class="news-country">Nigeria</span>
+                  <span class="src">Afripost</span><i></i><span>26 October 2026</span>
+                  <span class="news-go">Read more at the source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg></span>
+                </div>
+              </a>
+              <a class="news-card glass" href="https://reliefweb.int/report/uganda/east-horn-and-southern-africa-transhumance-tracking-tool-parts-karamoja-cluster-igad-cluster-1-october-2026" target="_blank" rel="noopener noreferrer">
+                <h4 class="news-title">Transhumance Tracking Tool: cross-border herding in the Karamoja Cluster</h4>
+                <p class="news-excerpt">A new IGAD/IOM tracking report shows that seasonal cross-border movement of herders and livestock remains a mainstay of livelihoods across the Kenya–Uganda border in the Karamoja cluster. Some 89% of herding groups move in search of water and pasture in the dry season, while climate change is shifting the timing of 58% of movements.</p>
+                <div class="news-meta">
+                  <span class="news-country">Kenya–Uganda</span>
+                  <span class="src">ReliefWeb (IOM / IGAD)</span><i></i><span>23 October 2026</span>
+                  <span class="news-go">Read more at the source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg></span>
+                </div>
+              </a>
+              <a class="news-card glass" href="https://asiadaily.org/news/16083/" target="_blank" rel="noopener noreferrer">
+                <h4 class="news-title">Himalayan yak herders unite as Bhutan loses 28% of its yaks</h4>
+                <p class="news-excerpt">Herders from Bhutan, India and Nepal launched the Himalayan Yak Herders' Network on 23 October 2026 in Laya, Bhutan, during the Royal Highland Festival, with ICIMOD's support. Bhutan's yak population fell about 28% between 2020 and 2024, and the herder-led network will work on pastures, breeding, markets and opportunities for young herders.</p>
+                <div class="news-meta">
+                  <span class="news-country">Bhutan, Nepal &amp; India</span>
+                  <span class="src">Asia Daily</span><i></i><span>21 October 2026</span>
+                  <span class="news-go">Read more at the source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg></span>
+                </div>
+              </a>
+              <a class="news-card glass" href="https://peopledaily.digital/news/laikipia-pastoralists-forced-to-cross-into-nyandarua-as-pasture-runs-dry" target="_blank" rel="noopener noreferrer">
+                <h4 class="news-title">Laikipia pastoralists forced to cross into Nyandarua as pasture runs dry</h4>
+                <p class="news-excerpt">Thousands of livestock from Laikipia are moving into neighbouring Nyandarua County in search of pasture and water as prolonged dry spells leave pastoralist communities struggling to sustain their animals. Officials say climate change and increasingly unpredictable weather are forcing herders to travel farther from their traditional grazing areas.</p>
+                <div class="news-meta">
+                  <span class="news-country">Kenya</span>
+                  <span class="src">People Daily</span><i></i><span>10 October 2026</span>
+                  <span class="news-go">Read more at the source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg></span>
+                </div>
+              </a>
+              <a class="news-card glass" href="https://www.devdiscourse.com/article/business/3988037-mongolias-smart-herders-project-brings-climate-support-to-4000-herding-families" target="_blank" rel="noopener noreferrer">
+                <h4 class="news-title">Mongolia's SMART-Herders project brings climate support to 4,000 herding families</h4>
+                <p class="news-excerpt">A new three-year project will support 4,000 herding families in Mongolia's Bayankhongor and Dundgobi provinces with water access, early weather warnings and places to process and sell livestock products. Financed by a US$2 million Adaptation Fund grant and managed by IFAD with UNIDO and the Office of the President, it helps herders face drier summers and severe dzud winters.</p>
+                <div class="news-meta">
+                  <span class="news-country">Mongolia</span>
+                  <span class="src">Devdiscourse</span><i></i><span>7 October 2026</span>
+                  <span class="news-go">Read more at the source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg></span>
+                </div>
+              </a>
+            </div>
           </div>
 
           <div class="soon" id="cat-soon">
@@ -1893,6 +1967,7 @@
           if (key === "economy") { buildShop(); resetShop(); }
           document.getElementById("intl-subs").hidden = key !== "intl";
           if (key === "intl") resetIntl();
+          document.getElementById("intl-news").hidden = !isIntl;
           document.getElementById("intl-video").hidden = !isIntl;
           if (isIntl) mountIntlVideo(); else unmountIntlVideo();
           show("category");
