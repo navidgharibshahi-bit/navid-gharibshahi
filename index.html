@@ -607,6 +607,100 @@
       .legal b { color: var(--green-800); }
       html[data-theme="dark"] .legal b { color: #e9d9a8; }
 
+      /* ---- sharing: per-card button, glass sheet, toast, footer site row ---- */
+      .share-btn {
+        display: inline-flex; align-items: center; gap: 6px; cursor: pointer; flex: none;
+        margin-inline-start: 10px; padding: 6px 13px; border-radius: 999px;
+        border: 1px solid var(--glass-border); background: var(--glass-bg-strong);
+        -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+        color: var(--green-800); font-size: .82rem; font-weight: 800; font-family: inherit;
+        box-shadow: var(--inner-hi); white-space: nowrap;
+        transition: transform var(--dur-1) var(--ease);
+      }
+      html[data-theme="dark"] .share-btn { color: #e9d9a8; }
+      .share-btn:hover { transform: translateY(-1px); }
+      .share-btn:active { transform: scale(.95); }
+      .share-btn:focus-visible { outline: 2px solid var(--sel-ring); outline-offset: 2px; }
+      .share-btn svg { width: 15px; height: 15px; flex: none; }
+      .share-btn-article { margin-top: 16px; }
+      .share-site-title { margin-top: 26px; }
+      .site-share { display: flex; flex-wrap: wrap; gap: 8px; }
+      .share-chip {
+        appearance: none; font-family: inherit; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 7px;
+        padding: 9px 15px; border-radius: 999px;
+        border: 1px solid var(--glass-border); background: var(--glass-bg-strong);
+        -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+        color: var(--ink); font-size: .88rem; font-weight: 700;
+        box-shadow: var(--inner-hi), 0 8px 16px -10px rgba(11,46,33,.35);
+        transition: transform var(--dur-1) var(--ease);
+      }
+      .share-chip:active { transform: scale(.95); }
+      .share-chip svg { width: 18px; height: 18px; flex: none; }
+      .share-backdrop {
+        position: fixed; inset: 0; z-index: 300;
+        background: rgba(7,26,18,.52);
+        -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+        display: flex; align-items: flex-end; justify-content: center;
+      }
+      .share-backdrop[hidden] { display: none; }
+      @media (min-width: 640px) { .share-backdrop { align-items: center; padding: 20px; } }
+      .share-sheet {
+        width: 100%; max-width: 440px; max-height: 86vh; overflow-y: auto;
+        background: var(--glass-bg-strong);
+        -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%);
+        border: 1px solid var(--glass-border); box-shadow: var(--inner-hi), var(--glass-shadow);
+        border-radius: 28px 28px 0 0;
+        padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+        animation: sheetIn var(--dur-3) var(--ease) both;
+      }
+      @media (min-width: 640px) { .share-sheet { border-radius: 28px; padding-bottom: 20px; } }
+      @keyframes sheetIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+      .share-sheet-head { display: flex; align-items: center; gap: 10px; }
+      .share-sheet-head h3 { margin: 0; font-size: 1.15rem; font-weight: 900; color: var(--green-900); }
+      html[data-theme="dark"] .share-sheet-head h3 { color: #f3e9c8; }
+      .share-close {
+        appearance: none; cursor: pointer; margin-inline-start: auto; flex: none;
+        width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+        border: 1px solid var(--glass-border); background: var(--field-bg); color: var(--ink-2);
+        box-shadow: var(--inner-hi); transition: transform var(--dur-1) var(--ease);
+      }
+      .share-close:active { transform: scale(.92); }
+      .share-close svg { width: 17px; height: 17px; }
+      .share-sheet-item { margin: 8px 0 16px; color: var(--ink-2); font-size: .92rem; line-height: 1.9; }
+      .share-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .share-opt {
+        appearance: none; font-family: inherit; cursor: pointer;
+        display: flex; flex-direction: column; align-items: center; gap: 8px;
+        padding: 14px 6px 12px; border-radius: 18px;
+        border: 1px solid var(--glass-border); background: var(--field-bg);
+        color: var(--ink); font-size: .88rem; font-weight: 700; box-shadow: var(--inner-hi);
+        transition: transform var(--dur-1) var(--ease);
+      }
+      .share-opt:active { transform: scale(.95); }
+      .share-disc { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; flex: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.4); }
+      .share-disc svg { width: 24px; height: 24px; }
+      .share-disc.wa { background: #25d366; }
+      .share-disc.tg { background: #2aabee; }
+      .share-disc.ei { background: #f07d1a; }
+      .share-disc.ba { background: #00b386; }
+      .share-disc.ig { background: linear-gradient(150deg, #f06ba8, #7b3fa0); }
+      .share-disc.cp { background: var(--glass-bg-strong); color: var(--green-800); border: 1px solid var(--glass-border); }
+      html[data-theme="dark"] .share-disc.cp { color: #e9d9a8; }
+      .share-toast {
+        position: fixed; bottom: calc(22px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+        z-index: 320; max-width: calc(100vw - 32px); text-align: center;
+        background: linear-gradient(150deg, #1c6b4a, #0e3d29); color: #fdf6dd;
+        border: 1px solid rgba(217,180,92,.5); border-radius: 999px;
+        padding: 12px 22px; font-size: .92rem; font-weight: 700; line-height: 1.8;
+        box-shadow: 0 18px 34px -12px rgba(11,46,33,.5);
+        animation: sheetIn var(--dur-3) var(--ease) both;
+      }
+      .share-toast[hidden] { display: none; }
+      @media (prefers-reduced-motion: reduce) {
+        .share-sheet, .share-toast { animation: none; }
+      }
+
       /* blocks revealed inside a view (province news, shop, intl extras,
          status notes) enter with the same soft fade-rise as the views */
       #province-news:not([hidden]), #cat-article:not([hidden]), #regs-article:not([hidden]), #cat-links:not([hidden]), .intl-about:not([hidden]), .intl-news:not([hidden]), .intl-subs:not([hidden]),
@@ -979,6 +1073,10 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <p class="regs-source">منبع متن: <a href="https://lamtakam.com/law/council_of_ministers/123049/%D8%A2%DB%8C%DB%8C%D9%86+%D9%86%D8%A7%D9%85%D9%87+%D8%B3%D8%A7%D9%85%D8%A7%D9%86%D8%AF%D9%87%DB%8C+%D8%B9%D8%B4%D8%A7%DB%8C%D8%B1" target="_blank" rel="noopener noreferrer">https://lamtakam.com/law/council_of_ministers/123049/آیین+نامه+ساماندهی+عشایر</a></p>
+            <button class="btn share-btn-article share-open" type="button" data-share-title="آیین‌نامه ساماندهی عشایر" data-share-url="https://lamtakam.com/law/council_of_ministers/123049/%D8%A2%DB%8C%DB%8C%D9%86+%D9%86%D8%A7%D9%85%D9%87+%D8%B3%D8%A7%D9%85%D8%A7%D9%86%D8%AF%D9%87%DB%8C+%D8%B9%D8%B4%D8%A7%DB%8C%D8%B1" data-share-lang="fa">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8l6.8-4M8.4 13.2l6.8 4"/></svg>
+              اشتراک‌گذاری
+            </button>
           </article>
 
           <!-- the owner's own article: rendered only inside the social
@@ -996,6 +1094,10 @@
             <button class="btn more-btn" type="button" id="article-more-btn" aria-expanded="false" aria-controls="article-more-text">
               ادامه مطلب
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <button class="btn share-open" type="button" data-share-title="چرا عشایر را از موضع ضعف و فقر معرفی می کنید؟" data-share-url="https://navidgharibshahi-bit.github.io/" data-share-site="1" data-share-lang="fa">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8l6.8-4M8.4 13.2l6.8 4"/></svg>
+              اشتراک‌گذاری
             </button>
           </article>
 
@@ -1153,11 +1255,79 @@
                 <small>آپارات</small>
               </a>
             </div>
+            <p class="social-title share-site-title">اشتراک‌گذاری سایت</p>
+            <div class="site-share" role="group" aria-label="اشتراک‌گذاری سایت">
+              <button class="share-chip" type="button" data-site-share="whatsapp">
+                <svg viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.9L3.5 20.5l4.2-1.1A8.5 8.5 0 1 0 12 3.5zm0 15.5a7 7 0 0 1-3.6-1l-.4-.2-2.5.7.7-2.4-.3-.4a7 7 0 1 1 6.1 3.3zm3.8-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a5.7 5.7 0 0 1-2.8-2.5c-.2-.4.2-.4.6-1.3a.5.5 0 0 0 0-.5c-.1-.2-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg>
+                واتساپ
+              </button>
+              <button class="share-chip" type="button" data-site-share="telegram">
+                <svg viewBox="0 0 24 24" fill="#2aabee" aria-hidden="true"><path d="M21.9 4.6c.2-1-.6-1.7-1.5-1.3L2.9 9.7c-1 .4-1 1.9.1 2.2l4.4 1.4 1.7 5.3c.3.8 1.3 1 2 .4l2.4-2.3 4.6 3.4c.8.6 2 .2 2.2-.8l1.6-14.7zM8.6 12.8l9.3-5.9c.2-.1.4.2.2.4l-7.8 7.1-.3 3-1.4-4.6z"/></svg>
+                تلگرام
+              </button>
+              <button class="share-chip" type="button" data-site-share="eitaa">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f07d1a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19.5 9.2A8 8 0 1 0 21 14"/><path d="M21 5.5v4h-4"/><path d="M12 8.5a3.5 3.5 0 1 0 3.5 3.5"/></svg>
+                ایتا
+              </button>
+              <button class="share-chip" type="button" data-site-share="bale">
+                <svg viewBox="0 0 24 24" fill="#00b386" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.1L3.2 20.8l4.6-1.1A8.8 8.8 0 1 0 12 3.2zm4.9 6.1l-6.9 6.9c-.3.3-.8.2-1-.1l-1.9-2.6c-.2-.3-.1-.7.2-.9l2.2-1.5c.3-.2.7-.1.9.2l.7 1 4.7-4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1z" opacity=".95"/></svg>
+                بله
+              </button>
+              <button class="share-chip" type="button" data-site-share="instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#c2337f" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="#c2337f" stroke="none"/></svg>
+                اینستاگرام
+              </button>
+              <button class="share-chip" type="button" data-site-share="copy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 10a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+                کپی لینک
+              </button>
+            </div>
           </div>
         </div>
       </section>
       <p class="legal">© <b>صدای عشایر ایران</b></p>
     </footer>
+
+    <!-- share sheet: opened by every «اشتراک‌گذاری / Share» button on the
+         news cards and article blocks; options are filled per language -->
+    <div class="share-backdrop" id="share-backdrop" hidden>
+      <div class="share-sheet" id="share-sheet" role="dialog" aria-modal="true" aria-labelledby="share-sheet-title">
+        <div class="share-sheet-head">
+          <h3 id="share-sheet-title">اشتراک‌گذاری</h3>
+          <button class="share-close" type="button" id="share-close" aria-label="بستن">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <p class="share-sheet-item" id="share-sheet-item"></p>
+        <div class="share-opts">
+          <button class="share-opt" type="button" data-act="whatsapp">
+            <span class="share-disc wa"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.9L3.5 20.5l4.2-1.1A8.5 8.5 0 1 0 12 3.5zm0 15.5a7 7 0 0 1-3.6-1l-.4-.2-2.5.7.7-2.4-.3-.4a7 7 0 1 1 6.1 3.3zm3.8-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a5.7 5.7 0 0 1-2.8-2.5c-.2-.4.2-.4.6-1.3a.5.5 0 0 0 0-.5c-.1-.2-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1 0-.1-.2-.2-.4-.3z"/></svg></span>
+            <span class="share-opt-label">واتساپ</span>
+          </button>
+          <button class="share-opt" type="button" data-act="telegram">
+            <span class="share-disc tg"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M21.9 4.6c.2-1-.6-1.7-1.5-1.3L2.9 9.7c-1 .4-1 1.9.1 2.2l4.4 1.4 1.7 5.3c.3.8 1.3 1 2 .4l2.4-2.3 4.6 3.4c.8.6 2 .2 2.2-.8l1.6-14.7zM8.6 12.8l9.3-5.9c.2-.1.4.2.2.4l-7.8 7.1-.3 3-1.4-4.6z"/></svg></span>
+            <span class="share-opt-label">تلگرام</span>
+          </button>
+          <button class="share-opt" type="button" data-act="eitaa">
+            <span class="share-disc ei"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19.5 9.2A8 8 0 1 0 21 14"/><path d="M21 5.5v4h-4"/><path d="M12 8.5a3.5 3.5 0 1 0 3.5 3.5"/></svg></span>
+            <span class="share-opt-label">ایتا</span>
+          </button>
+          <button class="share-opt" type="button" data-act="bale">
+            <span class="share-disc ba"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.1L3.2 20.8l4.6-1.1A8.8 8.8 0 1 0 12 3.2zm4.9 6.1l-6.9 6.9c-.3.3-.8.2-1-.1l-1.9-2.6c-.2-.3-.1-.7.2-.9l2.2-1.5c.3-.2.7-.1.9.2l.7 1 4.7-4c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1z" opacity=".95"/></svg></span>
+            <span class="share-opt-label">بله</span>
+          </button>
+          <button class="share-opt" type="button" data-act="instagram">
+            <span class="share-disc ig"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="#fff" stroke="none"/></svg></span>
+            <span class="share-opt-label">اینستاگرام</span>
+          </button>
+          <button class="share-opt" type="button" data-act="copy">
+            <span class="share-disc cp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 10a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span>
+            <span class="share-opt-label">کپی لینک</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="share-toast" id="share-toast" role="status" aria-live="polite" hidden></div>
 
     <script>
       (function () {
@@ -1637,6 +1807,7 @@
           ]
         };
         var NEWS_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7H8M17 7v9M17 7L7.5 16.5"/></svg>';
+        var SHARE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8l6.8-4M8.4 13.2l6.8 4"/></svg>';
         var newsWrap = document.getElementById("province-news");
         var newsList = document.getElementById("news-list");
         var provinceSoon = document.getElementById("province-soon");
@@ -1653,11 +1824,16 @@
               '<h4 class="news-title"></h4>' +
               '<p class="news-excerpt"></p>' +
               '<div class="news-meta"><span class="src"></span><i></i><span class="date"></span>' +
-              '<span class="news-go">ادامه خبر در منبع ' + NEWS_ARROW + "</span></div>";
+              '<span class="news-go">ادامه خبر در منبع ' + NEWS_ARROW + "</span>" +
+              '<span class="share-btn share-open" role="button" tabindex="0">' + SHARE_ICON + "<span>اشتراک‌گذاری</span></span></div>";
             a.querySelector(".news-title").textContent = n.title;
             a.querySelector(".news-excerpt").textContent = n.excerpt;
             a.querySelector(".news-meta .src").textContent = n.source;
             a.querySelector(".news-meta .date").textContent = n.date;
+            var provShareBtn = a.querySelector(".share-btn");
+            provShareBtn.setAttribute("data-share-title", n.title);
+            provShareBtn.setAttribute("data-share-url", n.url);
+            provShareBtn.setAttribute("data-share-lang", "fa");
             newsList.appendChild(a);
           });
           newsWrap.hidden = items.length === 0;
@@ -1974,12 +2150,17 @@
             var metaHtml = '<span class="src"></span>';
             if (n.date) metaHtml += '<i></i><span class="date"></span>';
             metaHtml += '<span class="news-go">مشاهده در منبع ' + NEWS_ARROW + "</span>";
+            metaHtml += '<span class="share-btn share-open" role="button" tabindex="0">' + SHARE_ICON + "<span>" + (isIntl ? "Share" : "اشتراک‌گذاری") + "</span></span>";
             a.innerHTML =
               '<h4 class="news-title"></h4>' +
               '<div class="news-meta">' + metaHtml + "</div>";
             a.querySelector(".news-title").textContent = n.title;
             a.querySelector(".news-meta .src").textContent = n.source;
             if (n.date) a.querySelector(".news-meta .date").textContent = n.date;
+            var catShareBtn = a.querySelector(".share-btn");
+            catShareBtn.setAttribute("data-share-title", n.title);
+            catShareBtn.setAttribute("data-share-url", n.url);
+            catShareBtn.setAttribute("data-share-lang", isIntl ? "en" : "fa");
             catLinkList.appendChild(a);
           });
           catLinksWrap.hidden = catItems.length === 0;
@@ -2291,6 +2472,179 @@
         }, { threshold: 0.12 }) : null;
         document.querySelectorAll(".reveal").forEach(function (el) {
           if (io) io.observe(el); else el.classList.add("in");
+        });
+      })();
+    </script>
+    <script>
+      /* ---- sharing: every news card and article block carries a small
+         glass «اشتراک‌گذاری / Share» button that opens the share sheet
+         (WhatsApp / Telegram / Eitaa deep links; Bale and Instagram have
+         no web share URL, so they use the device share sheet via
+         navigator.share and fall back to copying the link). The footer
+         «اشتراک‌گذاری سایت» row shares the site itself. Tapping a share
+         button never follows the card's own link. ---- */
+      (function () {
+        var SITE = "https://navidgharibshahi-bit.github.io/";
+        var SHARE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="5.5" r="2.6"/><circle cx="17.5" cy="18.5" r="2.6"/><path d="M8.4 10.8l6.8-4M8.4 13.2l6.8 4"/></svg>';
+        var STR = {
+          fa: {
+            sheet: "اشتراک‌گذاری", whatsapp: "واتساپ", telegram: "تلگرام", eitaa: "ایتا",
+            bale: "بله", instagram: "اینستاگرام", copy: "کپی لینک", copied: "لینک کپی شد",
+            pasteBale: "لینک کپی شد، در بله پیست کنید",
+            pasteInsta: "لینک کپی شد، در اینستاگرام پیست کنید",
+            brand: "صدای عشایر ایران: " + SITE
+          },
+          en: {
+            sheet: "Share", whatsapp: "WhatsApp", telegram: "Telegram", eitaa: "Eitaa",
+            bale: "Bale", instagram: "Instagram", copy: "Copy link", copied: "Link copied",
+            pasteBale: "Link copied — paste it in Bale",
+            pasteInsta: "Link copied — paste it in Instagram",
+            brand: "Voice of Iran's Nomads: " + SITE
+          }
+        };
+        var backdrop = document.getElementById("share-backdrop");
+        var sheet = document.getElementById("share-sheet");
+        var sheetTitle = document.getElementById("share-sheet-title");
+        var sheetItem = document.getElementById("share-sheet-item");
+        var toast = document.getElementById("share-toast");
+        var current = null;
+        var toastTimer = 0;
+
+        /* the static world-news cards are plain markup: give each one its
+           Share button here (title/link are read from the card itself) */
+        document.querySelectorAll("#intl-news a.news-card").forEach(function (card) {
+          var meta = card.querySelector(".news-meta");
+          if (!meta || meta.querySelector(".share-btn")) return;
+          var s = document.createElement("span");
+          s.className = "share-btn share-open";
+          s.setAttribute("role", "button");
+          s.setAttribute("tabindex", "0");
+          s.setAttribute("data-share-lang", "en");
+          s.innerHTML = SHARE_ICON + "<span>Share</span>";
+          meta.appendChild(s);
+        });
+
+        function fullText(p) {
+          if (p.site) return p.title + "\n" + p.url;
+          return p.title + "\n" + p.url + "\n" + STR[p.lang].brand;
+        }
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.hidden = false;
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(function () { toast.hidden = true; }, 2800);
+        }
+        function copyText(text, done) {
+          function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); } catch (e) {}
+            document.body.removeChild(ta);
+            if (done) done();
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { if (done) done(); }, fallback);
+          } else { fallback(); }
+        }
+        function doShare(act, p) {
+          var s = STR[p.lang];
+          var text = fullText(p);
+          if (act === "whatsapp") {
+            window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank", "noopener");
+          } else if (act === "telegram") {
+            window.open("https://t.me/share/url?url=" + encodeURIComponent(p.url) + "&text=" + encodeURIComponent(p.title), "_blank", "noopener");
+          } else if (act === "eitaa") {
+            window.open("https://eitaa.com/share/url?url=" + encodeURIComponent(p.url), "_blank", "noopener");
+          } else if (act === "copy") {
+            copyText(p.url, function () { showToast(s.copied); });
+          } else if (act === "bale" || act === "instagram") {
+            var msg = act === "bale" ? s.pasteBale : s.pasteInsta;
+            if (navigator.share) {
+              var shared = false;
+              navigator.share({ title: p.title, text: text, url: p.url }).then(function () { shared = true; }).catch(function (err) {
+                if (!shared && err && err.name !== "AbortError") {
+                  copyText(p.url, function () { showToast(msg); });
+                }
+              });
+            } else {
+              copyText(p.url, function () { showToast(msg); });
+            }
+          }
+        }
+        function openSheet(p) {
+          current = p;
+          var s = STR[p.lang];
+          sheet.setAttribute("dir", p.lang === "en" ? "ltr" : "rtl");
+          sheet.setAttribute("lang", p.lang === "en" ? "en" : "fa");
+          sheetTitle.textContent = s.sheet;
+          document.getElementById("share-close").setAttribute("aria-label", p.lang === "en" ? "Close" : "بستن");
+          sheetItem.textContent = p.title;
+          ["whatsapp", "telegram", "eitaa", "bale", "instagram", "copy"].forEach(function (act) {
+            var label = sheet.querySelector('[data-act="' + act + '"] .share-opt-label');
+            if (label) label.textContent = s[act];
+          });
+          backdrop.hidden = false;
+          document.body.style.overflow = "hidden";
+        }
+        function closeSheet() {
+          backdrop.hidden = true;
+          document.body.style.overflow = "";
+          current = null;
+        }
+        sheet.querySelectorAll("[data-act]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            if (!current) return;
+            var p = current;
+            var act = b.getAttribute("data-act");
+            closeSheet();
+            doShare(act, p);
+          });
+        });
+        document.getElementById("share-close").addEventListener("click", closeSheet);
+        backdrop.addEventListener("click", function (e) { if (e.target === backdrop) closeSheet(); });
+
+        function payloadFrom(el) {
+          var title = el.getAttribute("data-share-title");
+          var url = el.getAttribute("data-share-url");
+          var lang = el.getAttribute("data-share-lang") || "fa";
+          var site = el.getAttribute("data-share-site") === "1";
+          if (!url && el.closest) {
+            var card = el.closest("a.news-card");
+            if (card) {
+              var t = card.querySelector(".news-title");
+              title = t ? t.textContent.replace(/\s+/g, " ").trim() : "";
+              url = card.href;
+            }
+          }
+          if (!url) return null;
+          return { title: title || "", url: url, lang: lang === "en" ? "en" : "fa", site: site };
+        }
+        document.addEventListener("click", function (e) {
+          var btn = e.target && e.target.closest ? e.target.closest(".share-open") : null;
+          if (!btn) return;
+          e.preventDefault();
+          e.stopPropagation();
+          var p = payloadFrom(btn);
+          if (p) openSheet(p);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !backdrop.hidden) { closeSheet(); return; }
+          var t = e.target;
+          if ((e.key === "Enter" || e.key === " ") && t && t.classList && t.classList.contains("share-open") && t.tagName !== "BUTTON") {
+            e.preventDefault();
+            var p = payloadFrom(t);
+            if (p) openSheet(p);
+          }
+        });
+
+        /* footer: share the site itself, acting immediately (no sheet) */
+        var sitePayload = { title: "صدای عشایر ایران", url: SITE, lang: "fa", site: true };
+        document.querySelectorAll("[data-site-share]").forEach(function (b) {
+          b.addEventListener("click", function () { doShare(b.getAttribute("data-site-share"), sitePayload); });
         });
       })();
     </script>
